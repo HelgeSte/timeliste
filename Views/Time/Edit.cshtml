@@ -1,0 +1,49 @@
+@model timeliste.Models.Time
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1 class="h1">Rediger</h1>
+
+<hr />
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="ProsjektId" class="control-label"></label>
+                    <input asp-for="ProsjektId" class="form-control" />
+                    <span asp-validation-for="ProsjektId" class="text-danger"></span>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+                        <label asp-for="Start" class="control-label"></label>
+                        <input asp-for="Start" class="form-control" />
+                        <span asp-validation-for="Start" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Slutt" class="control-label"></label>
+                        <input asp-for="Slutt" class="form-control" />
+                        <span asp-validation-for="Slutt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Kommentar" class="control-label"></label>
+                    <textarea asp-for="Kommentar" class="form-control"></textarea>
+                    <span asp-validation-for="Kommentar" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Lagre" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Tilbake til timelisten</a>
+    </div>
+</div>

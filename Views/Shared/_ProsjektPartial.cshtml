@@ -1,0 +1,8 @@
+﻿@model Prosjekt
+
+<td  class="Title">@Model.ProsjektNavn</td>
+<td class="Nickname">@Model.KundeNavn</td>
+<td class="Summary">@Model.Info</td>
+<td class="Summary">@Model.PeriodeLengde</td>
+<td><a asp-action="Edit" asp-route-id="@Model.Id">Edit</a></td>
+<td><a asp-action="Details" asp-route-id="@Model.Id">Details</a></td>

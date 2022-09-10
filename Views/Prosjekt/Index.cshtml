@@ -1,0 +1,40 @@
+﻿@model IEnumerable<timeliste.Models.Prosjekt>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Prosjekt</h2>
+
+<p>
+    <a asp-action="Create">Opprett nytt prosjekt</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProsjektNavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KundeNavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeriodeLengde)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+    @*foreach (var item in Model.OrderByDescending(item=>item.Id)) {*@
+        @foreach (var item in Model)
+        {
+            <tr>
+        <partial name="_ProsjektPartial" model="item" />
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<timeliste.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Accounts";
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    foreach (var user in Model)
+    {                 
+        <div><a asp-action="EditProfile" asp-route-id="@user.Id">Rediger @user.UserName </a></div>
+    }
+}
+<div>&nbsp;</div>
+<div><a asp-area="Identity" asp-page="/Account/Register">Opprett bruker</a>
+ </div>

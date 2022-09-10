@@ -1,0 +1,105 @@
+@model IEnumerable<timeliste.Models.Time>
+
+@{
+    ViewData["Title"] = "Timeliste";
+    Layout = "_Layout";
+}
+
+<h1>Timeliste</h1>
+
+<p>
+    <a asp-action="Create">Opprett ny time</a>
+</p>
+
+@{if(User.IsInRole("Admin")) {
+    <p>
+        <a asp-action="Export">Eksport timer</a>
+    </p>
+        }
+    }
+<form class="form-group" asp-action="Index">
+    <label for="Prosjekt">Velg Prosjekt:</label>
+    <select name="Prosjekt" id="prosjektId">
+        <option value="0">Alle</option>
+        @{
+            if(ViewBag.Prosjekter as List<Prosjekt> != null) {
+                foreach(var prosjekt in ViewBag.Prosjekter as List<Prosjekt>) {
+                    <option value="@prosjekt.Id">@prosjekt.ProsjektNavn</option>
+                }
+            } else {
+                <option value="null">Ingen prosjekt finnes</option>
+            }
+        }
+    </select>
+    @{
+        if(User.IsInRole("Admin")) {
+            <label for="viewAlle"> Se alle timer: </label>
+            <input type="checkbox" id="viewAlle" name="viewAlle" value="1">
+        }
+    }
+    <input type="submit" value="Velg">
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProsjektId)
+            </th>
+            @if(User.IsInRole("Admin")) {
+                <th>
+                    @Html.DisplayNameFor(model => model.AnsattNr)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slutt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kommentar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Reverse()) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProsjektId)
+            </td>
+            @if(User.IsInRole("Admin")) {
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnsattNr)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slutt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kommentar)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Rediger</a>
+
+                @if(User.IsInRole("Admin")) {
+                    @: |
+                    <a asp-action="Details" asp-route-id="@item.Id">Vis detaljer</a>
+                    @: |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Slett</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

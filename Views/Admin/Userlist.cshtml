@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewBag.Title = "User Administration";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model.Any())
+{
+
+    foreach (var user in Model)
+    {
+        
+        @*<a href="#"" asp-controller="Account"
+           class="btn btn-primary mb-3" style="width:auto">
+            Add new user
+        </a>*@
+        
+        <div class="card mb-3">
+            <div class="card-header">
+                User Name : @user.UserName
+                User ID : @user.Id
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-danger">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No users created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a user
+            </h5>
+            @*
+            <a class="btn btn-primary" style="width:auto"
+                asp-contoller="Account" asp-action="Register">
+                Add a new user
+            </a>
+         *@   
+        </div>
+    </div>
+}

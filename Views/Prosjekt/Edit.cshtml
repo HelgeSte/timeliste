@@ -1,0 +1,45 @@
+﻿@model Prosjekt
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Rediger Prosjekt</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ProsjektNavn" class="control-label"></label>
+                <input asp-for="ProsjektNavn" id="Title" class="form-control" />
+                <span asp-validation-for="ProsjektNavn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KundeNavn" class="control-label"></label>
+                <input asp-for="KundeNavn" id="Summary" class="form-control" />
+                <span asp-validation-for="KundeNavn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Info" class="control-label"></label>
+                <input asp-for="Info" id="Content" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PeriodeLengde" class="control-label"></label>
+                <input asp-for="PeriodeLengde" id="Content" class="form-control" />
+                <span asp-validation-for="PeriodeLengde" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="Submit" value="Save" class="btn btn-primary">Lagre</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

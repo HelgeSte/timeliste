@@ -1,0 +1,35 @@
+@model IEnumerable<timeliste.Models.Time>
+
+@{
+    ViewData["Title"] = "Timeliste";
+}
+
+<h1>Timeliste</h1>
+
+<form class="form-group" asp-action="Export">
+    <label for="Prosjekt">Eksport timelister:</label>
+    <select name="Prosjekt" id="prosjektId">
+        @{
+            if(ViewBag.Prosjekter as List<Prosjekt> != null) {
+                foreach(var prosjekt in ViewBag.Prosjekter as List<Prosjekt>) {
+                    <option value="@prosjekt.Id">@prosjekt.ProsjektNavn</option>
+                }
+            } else {
+                <option value="null">Ingen prosjekt finnes</option>
+            }
+        }
+    </select>
+
+    <br />
+
+    <label for="Prosjekt">Fra dato</label>
+    <input type="date" name="fraDato" />
+
+    <br />
+
+    <input type="submit" value="Export">
+</form>
+
+<p>
+    <a asp-action="Index">Tilbake til timelisten</a>
+</p>

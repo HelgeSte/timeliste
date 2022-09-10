@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Administration";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<ul>
+    <li class="nav-item">
+        <a href="Identity/Account/Register">User Registration</a>
+    </li>  
+    <li class="nav-item">
+        <a asp-area="" asp-controller="Admin" asp-action="Userlist">User Administration</a>
+    </li>
+</ul>
